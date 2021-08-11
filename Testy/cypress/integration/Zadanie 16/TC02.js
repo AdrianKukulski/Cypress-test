@@ -18,4 +18,5 @@ it('TC02', () => {
 
     cy.get('[data-test="login-button"]')
         .click()
+
 })
