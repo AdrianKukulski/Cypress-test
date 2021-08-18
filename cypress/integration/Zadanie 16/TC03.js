@@ -1,5 +1,5 @@
 it ('TC03', () => {
-    
+ //pierwsza strona   
     cy.visit('https://www.saucedemo.com/')
 
     cy.url()
@@ -13,7 +13,7 @@ it ('TC03', () => {
 
     cy.get('[data-test="login-button"]')
         .click()
-
+//druga strona
     cy.url()
         .should('include', '/inventory.html')
 
@@ -26,7 +26,7 @@ it ('TC03', () => {
     
     cy.get('[data-test="add-to-cart-sauce-labs-backpack"]')
         .click()
-
+//trzecia strona
     cy.get('[data-test="remove-sauce-labs-backpack"]')    
         .contains('Remove')
         .should('be.visible')
@@ -48,15 +48,46 @@ it ('TC03', () => {
     
     cy.get('[data-test="checkout"]')
         .click()
-
+//czwarta strona
     cy.url()
         .should('include', '/checkout-step-one.html')
     
-    cy.get('[data-test="firstname]')    
-        .contains('[name="firstName"]')
+    cy.get('[data-test="firstName"]')    
         .should('be.visible')
 
+    cy.get('input')
+        .eq(0)
+        .invoke('attr', 'placeholder')
+        .should('contain', 'First Name')
 
+    cy.get('[data-test="lastName"]')    
+        .should('be.visible')
+    
+    cy.get('input')
+        .eq(1)
+        .invoke('attr', 'placeholder')
+        .should('contain', 'Last Name')
+    
+    cy.get('[data-test="postalCode"]')    
+        .should('be.visible')
 
+    cy.get('input')
+        .eq(2)
+        .invoke('attr','placeholder')
+        .should('contain', 'Zip/Postal Code')
+
+    cy.get('[data-test="firstName"]')
+        .type('first')
+
+    cy.get('[data-test="lastName"]')
+        .type('last')
+
+    cy.get('[data-test="postalCode"]')
+        .type('0000')
+
+    cy.get('[data-test="continue"]')
+        .click()
+//piąta strona
+    cy.url()
+        .should('include', '/checkout-step-two.html')
 })
-
