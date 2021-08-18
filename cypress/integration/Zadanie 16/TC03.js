@@ -90,4 +90,16 @@ it ('TC03', () => {
 //piąta strona
     cy.url()
         .should('include', '/checkout-step-two.html')
+
+    cy.get('[data-test="finish"]')
+        .click() 
+//szósta strona
+    cy.url()
+        .should('include', '/checkout-complete.html')
+
+    cy.get('[class="complete-header"]')    
+        .contains('THANK YOU FOR YOUR ORDER')
+        .should('be.visible')
+
+        
 })
